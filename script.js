@@ -126,5 +126,10 @@ function updateTimer() {
         clearInterval(timer);
         alert('O tempo acabou!');
         resetTimer();
+
+        const alarmSound = document.getElementById('alarm-sound');
+        alarmSound.play();
+
+        resetTimer();
     }
 }
