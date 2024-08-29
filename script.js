@@ -13,9 +13,13 @@ const secondsSpan = document.getElementById('seconds');
 function loadConfig() {
     const savedFocusTime = parseInt(localStorage.getItem('focusTime')) || 25;
     const savedBreakTime = parseInt(localStorage.getItem('breakTime')) || 5;
+    const savedBackgroundImage = localStorage.getItem('backgroundImage') || '/assets/chillanime.jpg';
 
     document.getElementById('focus-time').value = savedFocusTime;
     document.getElementById('break-time').value = savedBreakTime;
+    document.getElementById('background-image').value = savedBackgroundImage;
+
+    document.body.style.backgroundImage = `url(${savedBackgroundImage})`;
 
     timeLeft = (isFocusMode ? savedFocusTime : savedBreakTime) * 60;
     updateTimerDisplay();
@@ -49,18 +53,23 @@ resetButton.addEventListener('click', resetTimer);
 document.getElementById('save-config').addEventListener('click', () => {
     const focusTimeInput = parseInt(document.getElementById('focus-time').value);
     const breakTimeInput = parseInt(document.getElementById('break-time').value);
+    const backgroundImageInput = document.getElementById('background-image').value;
 
     localStorage.setItem('focusTime', focusTimeInput);
     localStorage.setItem('breakTime', breakTimeInput);
+    localStorage.setItem('backgroundImage', backgroundImageInput);
 
     // atualizar o tempo que falta
-    if (isFocusMode) {
+     if (isFocusMode) {
         timeLeft = focusTimeInput * 60;
     } else {
         timeLeft = breakTimeInput * 60;
     }
     updateTimerDisplay();
 
+    // Atualizar a imagem de fundo
+    document.body.style.backgroundImage = `url(${backgroundImageInput})`;
+    
     // fechar as configs
     document.getElementById('config-modal').style.display = 'none';
 });
