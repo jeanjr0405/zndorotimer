@@ -13,7 +13,7 @@ const secondsSpan = document.getElementById('seconds');
 function loadConfig() {
     const savedFocusTime = parseInt(localStorage.getItem('focusTime')) || 25;
     const savedBreakTime = parseInt(localStorage.getItem('breakTime')) || 5;
-    const savedBackgroundImage = localStorage.getItem('backgroundImage') || '/assets/chillanime.jpg';
+    const savedBackgroundImage = localStorage.getItem('backgroundImage') || '/assets/img01.jpg';
 
     document.getElementById('focus-time').value = savedFocusTime;
     document.getElementById('break-time').value = savedBreakTime;
